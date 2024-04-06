@@ -1,0 +1,55 @@
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+
+
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width-device-width, initial-scale = 1, maximum-scale = 1"/>
+
+        <link rel="stylesheet " type="text/css" href="https://bootswatch.com/5/solar/bootstrap.css">
+
+
+
+
+    <link rel="stylesheet " type="text/css" href="{% static 'css/style.css' %}">
+    <title>Изменить ценность</title>
+
+</head>
+
+{% include  'base.html' %}
+<br>
+<br>
+<div class=" container bg-light shadow-md p-9 form-log">
+    <br>
+    <h3 class="text-center"> Изменение характеристики материальной ценности </h3>
+    <hr>
+
+
+
+    <form method="POST" autocomplete="off">
+
+        {%  csrf_token %}
+        {{form.title|as_crispy_field}}
+        <br>
+        {{form.weight|as_crispy_field}}
+        <br>
+        {{form.height|as_crispy_field}}
+        <br>
+        {{form.length|as_crispy_field}}
+        <br>
+        {{form.note|as_crispy_field}}
+        <br>
+        <input class="btn btn-primary navbar-btn" type="submit" value="Изменить">
+        <a class="btn btn-secondary navbar-btn" type="button" href="{% url 'view_iteam' %}"> Отмена</a>
+        <br>
+        <br>
+    </form>
+</div>
+
+
+</html>

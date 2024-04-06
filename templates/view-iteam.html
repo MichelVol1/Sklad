@@ -1,0 +1,81 @@
+{% load static %}
+
+<html>
+
+
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width-device-width, initial-scale = 1, maximum-scale = 1"/>
+
+    <link rel="stylesheet " type="text/css" href="https://bootswatch.com/5/solar/bootstrap.css">
+
+
+    <link rel="stylesheet " type="text/css" href="{% static 'css/style.css' %}">
+    <title>Просмотр материальных ценностей</title>
+
+</head>
+
+{% include  'base.html' %}
+<br>
+
+<h3 class="text-center"> Материальные ценности на складе </h3>
+
+<hr>
+{% if not task %}
+    <br>
+    <div class="container bg-light shadow-md p-5 form-log text-center" style="margin-top:20px;">
+        <h3 class="text-center"> У вас нет ценностей </h3>
+        <br>
+        <a class="btn btn-primary navbar-btn" type="button" href="{% url 'create_iteam' %}"> Подать заявку</a>
+    </div>
+
+{% else %}
+    {% for tsk in task %}
+        <div class="container bg-light shadow-md p-5 form-log" style="margin-top:20px;">
+            <h2>{{ tsk.title }}</h2>
+            <hr>
+            <h5>Ширина - {{ tsk.weight }} </h5>
+            <h5>Высота - {{ tsk.height }} </h5>
+            <h5>Длина - {{ tsk.length }} </h5>
+            {% if not tsk.note %}
+            {% else %}
+                {{ tsk.note }}
+                <br>
+            {% endif %}
+            <br>
+            <a class="btn btn-outline-dark navbar-btn" type="button" href="{% url 'update_iteam' tsk.id %}">Изменить
+                характеристику ценности </a>
+        <br>
+        <br>
+       
+            <a class="btn btn-outline-dark navbar-btn" type="button" href="{% url 'delete_iteam' tsk.id %}">Удалить
+                ценность</a>
+        </div>
+
+    {% endfor %}
+{% endif %}
+
+<br>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
